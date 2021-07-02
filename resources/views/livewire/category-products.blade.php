@@ -11,7 +11,7 @@
                             </figure>
                             <div>
                                 <h1 class="text-lg font-semibold">
-                                    <a href="">
+                                    <a href="{{route('products.show',$product)}}">
                                         {{Str::limit($product->name, 40)}}
                                     </a>
                                 </h1>
