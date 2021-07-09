@@ -19,17 +19,21 @@ class SizesSeeder extends Seeder
     {
 
         $sizes = ['S','M','L','XL'];
+
         $products = Product::whereHas('Subcategory', function(Builder $query){
             $query->where('color',true)->where('size',true);
         })->get();
 
         foreach ($products as $product){
             foreach ($sizes as $size){
-                $sizeg = Size::create(['name' => $size, 'product_id' => $product->id]);
+                /*$sizeg = Size::create(['name' => $size, 'product_id' => $product->id]);
                 $colors = Color::all();
                 foreach ($colors as $color){
                     $color->sizes()->attach([$sizeg->id => ['quantity' => 5]]);
-                }
+                }*/
+
+                $product->sizes()->create([
+                    'name' => $size]);
             }
         }
     }

@@ -25,6 +25,7 @@
                     prev: '.glider-' + id + '~ .glider-prev',
                     next: '.glider-' + id + '~ .glider-next'
                 },
+                //Slider responsivo
                 responsive:[
                     {
                         breakpoint: 640,

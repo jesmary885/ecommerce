@@ -9,11 +9,33 @@
         </x-slot>
 
         <x-slot name="content">
-            <div class="py-2 px-0">
-                <p class="text-center text-gray-700">
-                    No tiene ningun producto en su carrito
-                </p>
-            </div>
+            <ul>
+                @forelse (Cart::content() as $item)
+                    <li class="flex p-2 border-b border-gray-200">
+                        <img class="h-15 w-20 object-cover mr-4" src="{{$item->options->image}}" alt="">
+                        <article class="flex-1">
+                            <h1 class="font-bold">{{$item->name}}</h1>
+                            <p>Cant: {{$item->qty}}</p>
+                            <p>USD {{$item->price}}</p>
+                        </article>
+                    </li>
+                @empty
+                <li class="py-2 px-0">
+                    <p class="text-center text-gray-700">
+                        No tiene ningun producto en su carrito
+                    </p>
+                </li>
+            @endforelse
+
+            </ul>
+
+            @if (Cart::count())
+                <div class="p-2">
+                    <p class="font-bold text-blue-500">Total: USD {{Cart::subtotal()}}</p>
+                </div>
+            @endif
+            
+            
         </x-slot>
        
     </x-jet-dropdown>
